@@ -19,9 +19,7 @@ class CmdLine:
                     self.arglist.append(arg)
                 else:
                     self.dict[flag_name] = arg
-                    flag_name = None
-            
-            print(arg, "is flag:", self.__is_flag(arg))
+                    flag_name = None            
 
     def is_flag_present(self, flag):
         return flag in self.dict
@@ -45,9 +43,3 @@ class CmdLine:
         else:
             result = value        
         return result
-
-#cmd = CmdLine('-', sys.argv)
-#print("Is bar a flag?", cmd.is_flag_present("bar"))
-#print("Is foo a flag?", cmd.is_flag_present("foo"))
-#print("Value of a foo:", cmd.get_flag_value("foo"))
-

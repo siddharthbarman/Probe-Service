@@ -5,6 +5,7 @@ from datetime import datetime
 import sys
 import os
 import logging
+import socket
 from cmdline import CmdLine
 
 # creating a Flask app
@@ -36,12 +37,25 @@ if __name__ == '__main__':
     logfile = cmd.get_flag_value_default("LOGFILE", "probesvc.log")    
     serverStartDelay = getEnvVarValue("SERVER_START_DELAY", 0)
     serverReadyDelay = getEnvVarValue("SERVER_READY_DELAY", 0)
+    serverPort = getEnvVarValue("SERVER_PORT", 5000)
     
+    print("IP:", socket.gethostbyname(socket.gethostname()))
+    print("Server port:", serverPort)
+    print("PidFile:", pidFile)
+    print("logfile:", logfile)
+    print("serverStartDelay:", serverStartDelay)
+    print("serverReadyDelay", serverReadyDelay)
+
+    logging.basicConfig(level=logging.INFO, handlers=[
+        logging.FileHandler(logfile),
+        logging.StreamHandler(sys.stdout)
+    ])
+
     sleep(serverStartDelay)
     write_pid(pidFile)
+    logging.info("PID file written")
 
-    sleep(serverReadyDelay)
-    logging.basicConfig(filename=logfile, filemode='w', level=logging.INFO)
+    sleep(serverReadyDelay)    
     logging.info('Server started')
 
-    app.run(host ='0.0.0.0', port = 5000, debug = False)
+    app.run(host ='0.0.0.0', port = serverPort, debug = False)

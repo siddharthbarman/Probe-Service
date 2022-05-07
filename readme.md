@@ -26,5 +26,22 @@ response:
 ```
 Calling the endpoint:
 ```
-curl -XGET http://localhost:5000/health
+$ curl -XGET http://localhost:5000/health
+```
+
+### Docker
+Build the container:
+```
+$ docker build -t siddharthbarman/probesvc:1.0 .
+```
+
+Run the container:
+```
+docker run -n prober -p 5000:5000 -it siddharthbarman/probesvc:1.0
+```
+
+Connect to the container:
+```
+docker container exec -it prober bash
+
 ```
