@@ -7,14 +7,15 @@ readiness and liveliness probes of Kubernetes.
 ### Configurations
 The service can be controller using the following environment variables:
 
-| Config Key   	        | Type   	    | Description   	                                                            |    
-|---	                |---	        |---	                                                                        |
-| SERVER_START_DELAY    | Env variable  | Seconds after which the service writes its pid to file                        |
-| SERVER_READY_DELAY    | Env variable  | Seconds after which HTTP server starts   	                                    |
-| FORCE_STARTUP_FAILURE | Env variable  | Forces the program to terminate after executing the start delay if set to 1   |
-| FORCE_READY_FAILURE   | Env variable  | Forces the program to terminate after executing the ready delay if set to 1   |
-| PIDFILE               | Command line  | Full path to the pid file   	                                                |
-| LOGFILE               | Command line  | Full path to the log file                                                     |
+| Config Key   	            | Type   	    | Description   	                                                            |    
+|---	                    |---	        |---	                                                                        |
+| SERVER_START_DELAY        | Env variable  | Seconds after which the service writes its pid to file                        |
+| SERVER_READY_DELAY        | Env variable  | Seconds after which HTTP server starts   	                                    |
+| FORCE_STARTUP_FAILURE     | Env variable  | Forces the program to terminate after executing the start delay if set to 1   |
+| FORCE_READY_FAILURE       | Env variable  | Forces the program to terminate after executing the ready delay if set to 1   |
+| FAIL_HEALTH_AFTER_COUNT   | Env variable  | Makes the health endpoint return 500 after reaching this count                |
+| PIDFILE                   | Command line  | Full path to the pid file   	                                                |
+| LOGFILE                   | Command line  | Full path to the log file                                                     |
 ### Endpoints
 The service has just one endpoint '/health' which returns the following 
 response:
